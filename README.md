@@ -1,9 +1,17 @@
 # PrivaSee
-You must use `python 3.5`
+PyQT5-python3
+cognitive_face
 
 ##Installation
+In your repository
+####Linux:
 ```
+sudo pip install virtualenv
+virtualenv .venv
+source .venv/bin/activate
 pip install cognitive_face
+pip install requests
+sudo apt-get install python3-pyqt5
 ```
 and clone this files and add these code:
 ```
@@ -21,3 +29,5 @@ detect()
 
 ```
 
+##Err Handling...
+오류 고치는중.. 개같은거 십라
