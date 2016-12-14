@@ -1,5 +1,5 @@
 # PrivaSee
-
+You must use `python 2.7`
 
 ##Installation
 ```
