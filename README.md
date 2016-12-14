@@ -1,5 +1,5 @@
 # PrivaSee
-You must use `python 2.7`
+You must use `python 3.5`
 
 ##Installation
 ```
@@ -17,6 +17,7 @@ If you want to request `Detect`:
 ```
 from Minsung import *
 
-
+detect()
 
 ```
+

@@ -55,15 +55,15 @@ def request(method, url, data=None, json=None, headers=None, params=None):
 
 
 def Image(image):
-    if hasattr(image, 'read'):  # When image is a file-like object.
+    if hasattr(image, 'read'):
         headers = {'Content-Type': 'application/octet-stream'}
         data = image.read()
         return headers, data, None
-    elif os.path.isfile(image):  # When image is a file path.
+    elif os.path.isfile(image):
         headers = {'Content-Type': 'application/octet-stream'}
         data = open(image, 'rb').read()
         return headers, data, None
-    else:  # Defailt treat it as a URL (string).
+    else:
         headers = {'Content-Type': 'application/json'}
         json = {'url': image}
         return headers, None, json

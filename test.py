@@ -1,2 +1,2 @@
 from Minsung.Face import *
-detect()
+detect('')
