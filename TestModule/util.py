@@ -13,9 +13,13 @@ def request(method, url, params, body, headers):
 
     res = requests.request(method, url, params=params, body=body, headers=headers)
     if res.status_code in (200,202):
-        result = response.json()
+        result = res.json()
 
     if res.status_code not in (200,202):
         print("status code : {}".format(res.status_code))
         print("response : {}".format(res.text))
     return result
+
+def Image(image):
+    url = image
+    
