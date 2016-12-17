@@ -1,24 +1,13 @@
 from Minsung.util import *
 
 def detect(image):
-
     url = 'detect'
-    data = {
-        "url": image,
-
-    }
-    params = {
-        'returnFaceId': True,
-    }
-
-    headers = {
-        # Request headers
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': KEY,
-        'Content-Length':0
-    }
-
-    return request('POST', url,params,data,headers)
+    headers = {'Content-Type': 'application/octet-stream',
+               'Ocp-Apim-Subscription-Key': KEY,
+               'Content-Length': 0,
+               }
+    data = open(image, "rb")
+    return request('POST', url,data,headers)
 
 
 def find_similars(face_id, face_list_id=None, face_ids=None,

@@ -1,102 +1,30 @@
 import requests
+_BASEURL_ = 'https://api.projectoxford.ai/face/v1.0/'
+KEY = open("../key.txt", "r").readline()
+def request(method, url, params, body, headers):
+    if not url.startswith('https://'):
+        url = _BASEURL_ + url
+    if 'Content-Type' not in headers:
+        print("컨텐트 타입이 없습니다.")
+        headers['Content-Type'] = 'application/json'
+    headers['Ocp-Apim-Subscription-Key'] = KEY
 
-def Detect():
-    data = open('face.jpg', 'rb')
-    key = open("key.txt").readline()
-    check = "<bound method Response.json of <Response [200]>>"
-    headers = {
-        # Request headers
-        'Content-Type': 'application/octet-stream',
-        'Ocp-Apim-Subscription-Key': key
-    }
-    faceIdreturn = True
-    r = requests.post("https://api.projectoxford.ai/face/v1.0/detect?{}".format(faceIdreturn), data=data, headers=headers)
-    a = r.json
-    b = str(a)
-    if ((r.json() == list()) or (b != check)):
-        return False
-    NumberOfFace = len(r.json())
-    maxValue = 0
-    offset = 0
-    i = 0
-    while i < NumberOfFace:
-        height = r.json()[i]['faceRectangle']['height']
-        width = r.json()[i]['faceRectangle']['width']
-        if maxValue < height * width:
-            maxValue = height * width
-            offset = i
-        i += 1
-    FaceIdValue = r.json()[offset]['faceId']
-    return FaceIdValue
+    res = requests.request(method, url, params=params, body=body, headers=headers)
+    if res.status_code in (200,202):
+        result = res.json()
 
-def Create_FaceList():
-    FaceListId = "aperture_test"
-    key = open("../key.txt").readline()
-    check = "<bound method Response.json of <Response [200]>>"
-    headers = {
-        # Request headers
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': key
-    }
-    body = {
-        "name": "aperture_jyk",
-    }
-    r = requests.put("https://api.projectoxford.ai/face/v1.0/facelists/{}".format(FaceListId), json=body,
-                     headers=headers)
-    a = r.json
-    b = str(a)
-    if b != check:
-        return False
+    if res.status_code not in (200,202):
+        print("status code : {}".format(res.status_code))
+        print("response : {}".format(res.text))
+    return result
 
-def Add_Face():
-    data = open('TestImage.jpg', 'rb')
-    fAceListId = "aperture_test"
-    key = open("../key.txt").readline()
-    check = "<bound method Response.json of <Response [200]>>"
-    headers = {
-        # Request headers
-        'Content-Type': 'application/octet-stream',
-        'Ocp-Apim-Subscription-Key': key,
-        'Content-Length' : 0
-    }
-    r = requests.post("https://api.projectoxford.ai/face/v1.0/facelists/{}/persistedFaces".format(fAceListId),data=data, headers=headers)
-    a = r.json
-    b = str(a)
-    print(a)
-    if b != check:
-        return False
-    else:
-        return a
+def detect(image):
+    url = 'detect'
+    headers = {'Content-Type': 'application/octet-stream',
+               'Ocp-Apim-Subscription-Key': KEY,
+               'Content-Length': 0,
+               }
+    data = open(image, "rb")
+    return request('POST', url,data,headers)
 
-def Find_Similar(FaceId):
-    data = open('TestImage.jpg', 'rb')
-    FaceListId = "aperture_test"
-    key = open("../key.txt").readline()
-    check = "<bound method Response.json of <Response [200]>>"
-    headers = {
-        # Request headers
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': key
-    }
-    body = {
-        "faceId": FaceId,
-        "faceListId": FaceListId,
-        "maxNumOfCandidatesReturned": 1000,
-        "mode": "matchFace"
-    }
-    r = requests.post("https://api.projectoxford.ai/face/v1.0/findsimilars", json=body, headers=headers)
-    length = len(r.json())
-    Sum = 0
-    i = 0
-    while i < length:
-        Sum = Sum + float(r.json()[i]['confidence'])
-        i += 1
-    Confidence = Sum / length
-    a = r.json
-    b = str(a)
-    if b != check:
-        return False
-    return Confidence
-
-b = Add_Face()
-print(b)
+detect("")

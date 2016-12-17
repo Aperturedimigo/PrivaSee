@@ -1,15 +1,21 @@
 from Minsung.util import *
 
 def add_face(image, face_list_id, user_data=None, target_face=None):
-    url = 'facelists/{}/persistedFaces'.format(face_list_id)
-    headers, data, json = Image(image)
+    headers = {
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': KEY
+    }
+    json = {
+        "url": image
+    }
     params = {
         'userData': user_data,
         'targetFace': target_face,
     }
+    data = requests.post('https://api.projectoxford.ai/face/v1.0/facelists/{}/persistedFaces'.format(face_list_id),
+                         headers=headers, params=params, json=json)
+    print(data)
 
-    return request('POST', url, headers=headers, params=params, json=json,
-                        data=data)
 
 
 def create(face_list_id, name=None, user_data=None):

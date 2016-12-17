@@ -5,9 +5,9 @@ import requests
 
 import cognitive_face as CF
 
+KEY = "7fc4c113fee941e1b9e964ab98f559a7"
 _BASE_URL = 'https://api.projectoxford.ai/face/v1.0/'
 TIME_SLEEP = 1
-KEY = open("key.txt", 'r').readline()
 
 class CognitiveFaceException(Exception):
     def __init__(self, status_code, code, msg):

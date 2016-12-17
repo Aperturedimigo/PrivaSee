@@ -13,10 +13,19 @@ pip install cognitive_face
 pip install requests
 sudo apt-get install python3-pyqt5
 ```
+####windows:
+```
+pip install cognitive_face
+pip install requests
+
+```
+
 and clone this files and add these code:
+
 ```
 from Minsung import *
 ```
+
 
 ##Sample
 
