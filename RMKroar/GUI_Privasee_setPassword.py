@@ -28,7 +28,7 @@ class Form(QWidget):
         nameLabel.setAlignment(Qt.AlignCenter)
 
         nameLabel2 = QLabel()
-        nameLabel2.setText("Register Successfully Complete!")
+        nameLabel2.setText("Picture uploaded.")
         newfont = QtGui.QFont(fontMinor, 16, QtGui.QFont.Medium)
         nameLabel2.setFont(newfont)
         nameLabel2.setAlignment(Qt.AlignCenter)
@@ -51,8 +51,8 @@ class Form(QWidget):
 
         mainLayout = QGridLayout()
 
-        mainLayout.addWidget(nameLabel,0,0)
-        mainLayout.addWidget(nameLabel2,1,0)
+        mainLayout.addWidget(nameLabel2,0,0)
+        mainLayout.addWidget(nameLabel,1,0)
         mainLayout.addWidget(nameLabel3,2,0)
         mainLayout.addWidget(self.nameLine,3,0)
         mainLayout.addWidget(submitButton,4,0)
@@ -71,7 +71,7 @@ class Form(QWidget):
             return
 
         else:
-            '''call GUI_Privasee_Main'''
+            '''call GUI_Privasee_RegisterDone'''
             sys.exit(app.exec_())
 
 

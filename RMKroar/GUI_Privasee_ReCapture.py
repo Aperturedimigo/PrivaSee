@@ -1,5 +1,4 @@
 import sys
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPainter
 from PyQt5.QtGui import QPixmap
@@ -10,16 +9,20 @@ from PyQt5.QtCore import *
 windowSizeX = 440
 windowSizeY = 250
 
+captureFilePath = 'D:\capture.png'
 userName = 'Aperture'
 
-fontMajor = "Arial"
-fontMinor = "Dotum"
+fontMajor = 'Arial'
+fontMinor = 'Dotum'
 
 class Form(QWidget):
     # __init__ : 생성자
     # parent : 부모객체
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
+
+        captureLabel = QLabel()
+        captureLabel.setPixmap(QPixmap(captureFilePath))
 
         nameLabel = QLabel()
         nameLabel.setText("User : %s" % userName)
@@ -28,7 +31,7 @@ class Form(QWidget):
         nameLabel.setAlignment(Qt.AlignCenter)
 
         nameLabel2 = QLabel()
-        nameLabel2.setText("To reset, Please Input your password below : ")
+        nameLabel2.setText("Capture your face again.")
         newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
         nameLabel2.setFont(newfont)
         nameLabel2.setAlignment(Qt.AlignCenter)
@@ -36,42 +39,41 @@ class Form(QWidget):
         blankLabel = QLabel()
         blankLabel.setText(" ")
 
-        self.nameLine = QLineEdit()
-        self.nameLine.setGeometry(QRect())
-
+        captureButton = QPushButton("Capture")
         submitButton = QPushButton("Submit")
         backButton = QPushButton("Back")
 
-        submitButton.clicked.connect(self.submitContact)
-        backButton.clicked.connect(self.backContact)
+        buttonLayoutV = QVBoxLayout() # V : Vertical Box
+        buttonLayoutH = QHBoxLayout()  # H : Horizontal Box
 
-        buttonLayoutH = QHBoxLayout()
         buttonLayoutH.addWidget(submitButton)
         buttonLayoutH.addWidget(backButton)
 
-        mainLayout = QGridLayout()
+        buttonLayoutV.addWidget(nameLabel)
+        buttonLayoutV.addWidget(nameLabel2)
+        buttonLayoutV.addWidget(blankLabel)
+        buttonLayoutV.addWidget(captureButton)
+        buttonLayoutV.addLayout(buttonLayoutH)
 
-        mainLayout.addWidget(nameLabel,0,0)
-        mainLayout.addWidget(nameLabel2,1,0)
-        mainLayout.addWidget(self.nameLine,2,0)
-        mainLayout.addLayout(buttonLayoutH,3,0)
+        captureButton.clicked.connect(self.captureContact)
+        submitButton.clicked.connect(self.submitContact)
+        backButton.clicked.connect(self.backContact)
+
+        mainLayout = QGridLayout()
+        mainLayout.addWidget(captureLabel,0,0)
+        mainLayout.addLayout(buttonLayoutV,0,1)
 
         self.setLayout(mainLayout)
 
         self.setWindowTitle("Privasee")
 
+    def captureContact(self):
+        #picamera capture & make file
+        return
+
     def submitContact(self):
-
-        name = self.nameLine.text()
-
-        if name == "":
-            QMessageBox.information(self, "Empty Field",
-                                    "Please input your password properly.")
-            return
-
-        else:
-            '''call GUI_Privasee_Tutorial.py'''
-            sys.exit(app.exec_())
+        '''call GUI_Privasee_ReRegister.py'''
+        sys.exit(app.exec_())
 
     def backContact(self):
         '''call GUI_Privasee_Main.py'''

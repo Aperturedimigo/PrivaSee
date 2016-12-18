@@ -9,12 +9,11 @@ from PyQt5.QtCore import *
 windowSizeX = 440
 windowSizeY = 250
 
-logoFilePath = 'D:\logo.png'
 captureFilePath = 'D:\capture.png'
 userName = 'Aperture'
 
-fontMajor = "Arial"
-fontMinor = "Dotum"
+fontMajor = 'Arial'
+fontMinor = 'Dotum'
 
 class Form(QWidget):
     # __init__ : 생성자
@@ -26,41 +25,35 @@ class Form(QWidget):
         captureLabel.setPixmap(QPixmap(captureFilePath))
 
         nameLabel = QLabel()
-        nameLabel.setText("Privasee")
-        newfont = QtGui.QFont(fontMajor, 16, QtGui.QFont.Bold)
+        nameLabel.setText("User : %s" % userName)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
         nameLabel.setFont(newfont)
         nameLabel.setAlignment(Qt.AlignCenter)
 
         nameLabel2 = QLabel()
-        nameLabel2.setText("Hello, %s" % userName)
+        nameLabel2.setText("Register?")
         newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Bold)
         nameLabel2.setFont(newfont)
         nameLabel2.setAlignment(Qt.AlignCenter)
 
-        picLabel = QLabel()
-        picLabel.setPixmap(QPixmap(logoFilePath))
-
         blankLabel = QLabel()
         blankLabel.setText(" ")
 
-        captureButton = QPushButton("Capture")
+        noButton = QPushButton("No")
 
-        registerButton = QPushButton("RE-register")
+        yesButton = QPushButton("Yes")
 
         buttonLayoutV = QVBoxLayout() # V : Vertical Box
-        buttonLayoutH = QHBoxLayout() # H : Horizontal Box
 
-        buttonLayoutH.addWidget(picLabel)
-        buttonLayoutH.addWidget(nameLabel)
-
-        buttonLayoutV.addLayout(buttonLayoutH)
+        buttonLayoutV.addWidget(nameLabel)
         buttonLayoutV.addWidget(nameLabel2)
         buttonLayoutV.addWidget(blankLabel)
-        buttonLayoutV.addWidget(captureButton)
-        buttonLayoutV.addWidget(registerButton)
+        buttonLayoutV.addWidget(noButton)
+        buttonLayoutV.addWidget(yesButton)
 
-        captureButton.clicked.connect(self.captureContact)
-        registerButton.clicked.connect(self.registerContact)
+        noButton.clicked.connect(self.noContact)
+
+        yesButton.clicked.connect(self.yesContact)
 
         mainLayout = QGridLayout()
         mainLayout.addWidget(captureLabel,0,0)
@@ -70,12 +63,12 @@ class Form(QWidget):
 
         self.setWindowTitle("Privasee")
 
-    def captureContact(self):
-        '''If input face is similar : call GUI_Privasee_DoorOpen.py / Else : call GUI_Privasee_notYourFace.py'''
-        sys.exit(app.exec_())
+    def noContact(self):
+        '''call GUI_Privasee_ReCapture.py'''
+        return
 
-    def registerContact(self):
-        '''call GUI_Privasee_PasswordToRegister.py'''
+    def yesContact(self):
+        '''call GUI_Privasee_RegisterDone.py'''
         sys.exit(app.exec_())
 
 if __name__ == '__main__':
