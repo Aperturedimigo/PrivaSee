@@ -187,6 +187,8 @@ class Form(QWidget):
 
         self.main_captureLabel = QLabel()
         self.main_captureLabel.setPixmap(QPixmap(captureFilePath))
+        '''<Code> self.main_captureLabel에서 찍는 화면을 스트리밍으로 재생합니다.
+        189번째 줄을 아마도, 바꾸게 되지 않을까 싶습니다.'''
 
         self.main_nameLabel = QLabel()
         self.main_nameLabel.setText("Privasee")
@@ -273,6 +275,8 @@ class Form(QWidget):
 
         self.recapture_captureLabel = QLabel()
         self.recapture_captureLabel.setPixmap(QPixmap(captureFilePath))
+        '''<Code> self.recapture_captureLabel에서 찍는 화면을 스트리밍으로 재생합니다.
+         277번째 줄을 아마도, 바꾸게 되지 않을까 싶습니다.'''
 
         self.recapture_nameLabel = QLabel()
         self.recapture_nameLabel.setText("User : %s" % userName)
@@ -309,6 +313,41 @@ class Form(QWidget):
         self.recapture_submitButton.clicked.connect(self.recapture_submitContact)
         self.recapture_backButton.clicked.connect(self.recapture_backContact)
 
+        self.reregister_captureLabel = QLabel()
+        self.reregister_captureLabel.setPixmap(QPixmap(captureFilePath))
+        '''self.reregister_captureLabel에서 picamera에서 찍은, captureFilePath에 저장된 화면을 보여줍니다. (스트리밍 아님)
+        self_recapture_captureLabel에서 스트리밍하는 화면으로부터 캡쳐한 사진을 띄우는 방식입니다.'''
+
+        self.reregister_nameLabel = QLabel()
+        self.reregister_nameLabel.setText("User : %s" % userName)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        self.reregister_nameLabel.setFont(newfont)
+        self.reregister_nameLabel.setAlignment(Qt.AlignCenter)
+
+        self.reregister_nameLabel2 = QLabel()
+        self.reregister_nameLabel2.setText("Register?")
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Bold)
+        self.reregister_nameLabel2.setFont(newfont)
+        self.reregister_nameLabel2.setAlignment(Qt.AlignCenter)
+
+        self.reregister_blankLabel = QLabel()
+        self.reregister_blankLabel.setText(" ")
+
+        self.reregister_noButton = QPushButton("No")
+
+        self.reregister_yesButton = QPushButton("Yes")
+
+        self.reregister_buttonLayoutV = QVBoxLayout()  # V : Vertical Box
+
+        self.reregister_buttonLayoutV.addWidget(self.reregister_nameLabel)
+        self.reregister_buttonLayoutV.addWidget(self.reregister_nameLabel2)
+        self.reregister_buttonLayoutV.addWidget(self.reregister_blankLabel)
+        self.reregister_buttonLayoutV.addWidget(self.reregister_noButton)
+        self.reregister_buttonLayoutV.addWidget(self.reregister_yesButton)
+
+        self.reregister_noButton.clicked.connect(self.reregister_noContact)
+        self.reregister_yesButton.clicked.connect(self.reregister_yesContact)
+
         mainLayout = QGridLayout()
         mainLayout.addWidget(self.tutorial_picLabel, 0, 0)
         mainLayout.addWidget(self.tutorial_title, 0, 1)
@@ -340,6 +379,8 @@ class Form(QWidget):
         mainLayout.addLayout(self.passwordtoregister_buttonLayoutH, 3, 0)
         mainLayout.addWidget(self.recapture_captureLabel, 0, 0)
         mainLayout.addLayout(self.recapture_buttonLayoutV, 0, 1)
+        mainLayout.addWidget(self.reregister_captureLabel, 0, 0)
+        mainLayout.addLayout(self.reregister_buttonLayoutV, 0, 1)
 
         self.allHide()
         self.tutorial()
@@ -411,6 +452,13 @@ class Form(QWidget):
         self.recapture_nameLabel.hide()
         self.recapture_nameLabel2.hide()
         self.recapture_submitButton.hide()
+
+        self.reregister_blankLabel.hide()
+        self.reregister_captureLabel.hide()
+        self.reregister_nameLabel.hide()
+        self.reregister_nameLabel2.hide()
+        self.reregister_noButton.hide()
+        self.reregister_yesButton.hide()
 
     def tutorial(self):
         self.tutorial_title.show()
@@ -487,6 +535,14 @@ class Form(QWidget):
         self.recapture_nameLabel2.show()
         self.recapture_submitButton.show()
 
+    def reregister(self):
+        self.reregister_blankLabel.show()
+        self.reregister_captureLabel.show()
+        self.reregister_nameLabel.show()
+        self.reregister_nameLabel2.show()
+        self.reregister_noButton.show()
+        self.reregister_yesButton.show()
+
     def tutorial_nextContact(self):
         self.allHide()
         self.username()
@@ -530,6 +586,7 @@ class Form(QWidget):
     def register_yesContact(self):
         self.allHide()
         self.setpassword()
+        '''<code> 찍은 사진을 facelist에 올립니다. 이는 이후에 문을 열 때 캡쳐하는 사진과 비교를 위해 사용됩니다.'''
 
     def setpassword_submitContact(self):
 
@@ -585,11 +642,23 @@ class Form(QWidget):
         return
 
     def recapture_submitContact(self):
-        '''call GUI_Privasee_ReRegister.py'''
+        self.allHide()
+        self.reregister()
 
     def recapture_backContact(self):
         self.allHide()
         self.main()
+
+    def reregister_noContact(self):
+        self.allHide()
+        self.recapture()
+
+    def reregister_yesContact(self):
+        QMessageBox.information(self, "PrivaSee",
+                                    "Register successfully done!")
+        self.allHide()
+        self.main()
+        '''<code> 찍은 사진을 facelist에 올립니다. 이는 이후에 문을 열 때 캡쳐하는 사진과 비교를 위해 사용됩니다.'''
 
 if __name__ == '__main__':
 
