@@ -373,6 +373,8 @@ class Form(QWidget):
         mainLayout.addWidget(self.setpassword_nameLabel3, 2, 0)
         mainLayout.addWidget(self.setpassword_nameLine, 3, 0)
         mainLayout.addWidget(self.setpassword_submitButton, 4, 0)
+        mainLayout.addWidget(self.main_captureLabel, 0, 0)
+        mainLayout.addLayout(self.main_buttonLayoutV, 0, 1)
         mainLayout.addWidget(self.passwordtoregister_nameLabel, 0, 0)
         mainLayout.addWidget(self.passwordtoregister_nameLabel2, 1, 0)
         mainLayout.addWidget(self.passwordtoregister_nameLine, 2, 0)
@@ -417,7 +419,6 @@ class Form(QWidget):
         self.register_noButton.hide()
         self.register_yesButton.hide()
 
-        self.setpassword_blankLabel.hide()
         self.setpassword_nameLabel.hide()
         self.setpassword_nameLabel2.hide()
         self.setpassword_nameLabel3.hide()
@@ -433,7 +434,6 @@ class Form(QWidget):
         self.main_registerButton.hide()
 
         self.passwordtoregister_backButton.hide()
-        self.passwordtoregister_blankLabel.hide()
         self.passwordtoregister_nameLabel.hide()
         self.passwordtoregister_nameLabel2.hide()
         self.passwordtoregister_nameLine.hide()
@@ -502,7 +502,6 @@ class Form(QWidget):
         self.register_yesButton.show()
 
     def setpassword(self):
-        self.setpassword_blankLabel.show()
         self.setpassword_nameLabel.show()
         self.setpassword_nameLabel2.show()
         self.setpassword_nameLabel3.show()
@@ -520,7 +519,6 @@ class Form(QWidget):
 
     def passwordtoregister(self):
         self.passwordtoregister_backButton.show()
-        self.passwordtoregister_blankLabel.show()
         self.passwordtoregister_nameLabel.show()
         self.passwordtoregister_nameLabel2.show()
         self.passwordtoregister_nameLine.show()
