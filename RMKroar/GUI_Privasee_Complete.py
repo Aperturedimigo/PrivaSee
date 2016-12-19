@@ -49,7 +49,7 @@ class Form(QWidget):
 
         self.username_nameLabel = QLabel()
         self.username_nameLabel.setText("Please input your name below.")
-        newfont = QtGui.QFont(fontMinor, 16, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 16, QtGui.QFont.Normal)
         self.username_nameLabel.setFont(newfont)
         self.username_nameLabel.setAlignment(Qt.AlignCenter)
 
@@ -88,13 +88,13 @@ class Form(QWidget):
 
         self.capture_nameLabel = QLabel()
         self.capture_nameLabel.setText("User : %s" % userName)
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.capture_nameLabel.setFont(newfont)
         self.capture_nameLabel.setAlignment(Qt.AlignCenter)
 
         self.capture_nameLabel2 = QLabel()
         self.capture_nameLabel2.setText("Capture your face properly.")
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.capture_nameLabel2.setFont(newfont)
         self.capture_nameLabel2.setAlignment(Qt.AlignCenter)
 
@@ -128,7 +128,7 @@ class Form(QWidget):
 
         self.register_nameLabel = QLabel()
         self.register_nameLabel.setText("User : %s" % userName)
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.register_nameLabel.setFont(newfont)
         self.register_nameLabel.setAlignment(Qt.AlignCenter)
 
@@ -159,19 +159,19 @@ class Form(QWidget):
 
         self.setpassword_nameLabel = QLabel()
         self.setpassword_nameLabel.setText("User : %s" % userName)
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.setpassword_nameLabel.setFont(newfont)
         self.setpassword_nameLabel.setAlignment(Qt.AlignCenter)
 
         self.setpassword_nameLabel2 = QLabel()
         self.setpassword_nameLabel2.setText("Picture uploaded.")
-        newfont = QtGui.QFont(fontMinor, 16, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 16, QtGui.QFont.Normal)
         self.setpassword_nameLabel2.setFont(newfont)
         self.setpassword_nameLabel2.setAlignment(Qt.AlignCenter)
 
         self.setpassword_nameLabel3 = QLabel()
         self.setpassword_nameLabel3.setText("Please Input your password below : ")
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.setpassword_nameLabel3.setFont(newfont)
         self.setpassword_nameLabel3.setAlignment(Qt.AlignCenter)
 
@@ -229,7 +229,7 @@ class Form(QWidget):
 
         self.passwordtoregister_nameLabel = QLabel()
         self.passwordtoregister_nameLabel.setText("User : %s" % userName)
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.passwordtoregister_nameLabel.setFont(newfont)
         self.passwordtoregister_nameLabel.setAlignment(Qt.AlignCenter)
 
@@ -280,13 +280,13 @@ class Form(QWidget):
 
         self.recapture_nameLabel = QLabel()
         self.recapture_nameLabel.setText("User : %s" % userName)
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.recapture_nameLabel.setFont(newfont)
         self.recapture_nameLabel.setAlignment(Qt.AlignCenter)
 
         self.recapture_nameLabel2 = QLabel()
         self.recapture_nameLabel2.setText("Capture your face again.")
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.recapture_nameLabel2.setFont(newfont)
         self.recapture_nameLabel2.setAlignment(Qt.AlignCenter)
 
@@ -320,7 +320,7 @@ class Form(QWidget):
 
         self.reregister_nameLabel = QLabel()
         self.reregister_nameLabel.setText("User : %s" % userName)
-        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Medium)
+        newfont = QtGui.QFont(fontMinor, 12, QtGui.QFont.Normal)
         self.reregister_nameLabel.setFont(newfont)
         self.reregister_nameLabel.setAlignment(Qt.AlignCenter)
 
